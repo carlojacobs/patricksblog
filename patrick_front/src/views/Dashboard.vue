@@ -71,6 +71,13 @@ export default {
     editArticle(id) {
       this.$router.push('/edit/' + id);
     },
+    getArticles() {
+      axios.get(apiUrl + '/articles/all').then(res => {
+        this.articles = res.data;
+      }).catch(err => {
+        console.log(err);
+      });
+    },
     deleteArticle(id) {
       var passCandidate = window.prompt("Wachtoord: ");
       if (passCandidate == globalPassword) {
@@ -81,7 +88,7 @@ export default {
         }).then(res => {
           if (res.data) {
             window.alert("Verwijderd!");
-            this.$router.push('/dashboard');
+            this.getArticles();
           }
         }).catch(err => {
           console.log(err);
@@ -96,7 +103,7 @@ export default {
       next(vm => vm.setData(res.data));
     }).catch(err => {
       console.log(err);
-    })
+    });
   }
 }
 </script>

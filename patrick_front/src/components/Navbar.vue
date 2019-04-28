@@ -2,7 +2,7 @@
 <nav class="navbar is-info" role="navigation" aria-label="main navigation">
 	<div class="container">
 		<div class="navbar-brand">
-			<a class="navbar-item navbar-brand-patrick">Patrick Jacobs</a>
+			<router-link class="navbar-item navbar-brand-patrick" to="/">Patrick Jacobs</router-link>
 
 			<a role="button" class="navbar-burger burger" :class="{'is-active': isActive}" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" v-on:click="toggleNav">
 				<span aria-hidden="true"></span>
@@ -40,5 +40,6 @@
 .navbar-brand-patrick {
 	font-size: 1.5rem;
 	font-family: 'Kaushan Script', cursive;
+	background: transparent !important;
 }
 </style>
