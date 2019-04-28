@@ -1,3 +1,2 @@
-# patricksblog
-# patricksblog
-# patricksblog
+# Patrick's blog
+A blog I built for my dad.
