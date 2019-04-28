@@ -20,3 +20,9 @@
 		}
 	}
 </script>
+
+<style>
+.list-article {
+	margin-bottom: 1rem;
+}
+</style>

@@ -1,8 +1,8 @@
 <template>
-<nav class="navbar is-warning" role="navigation" aria-label="main navigation">
+<nav class="navbar is-info" role="navigation" aria-label="main navigation">
 	<div class="container">
 		<div class="navbar-brand">
-			<a class="navbar-item" href="">Patrick Jacobs</a>
+			<a class="navbar-item navbar-brand-patrick">Patrick Jacobs</a>
 
 			<a role="button" class="navbar-burger burger" :class="{'is-active': isActive}" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" v-on:click="toggleNav">
 				<span aria-hidden="true"></span>
@@ -35,3 +35,10 @@
 		}
 	}
 </script>
+
+<style>
+.navbar-brand-patrick {
+	font-size: 1.5rem;
+	font-family: 'Kaushan Script', cursive;
+}
+</style>

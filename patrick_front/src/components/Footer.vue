@@ -2,7 +2,9 @@
   <footer class="footer">
     <div class="content has-text-centered">
       <p>
-        Gemaakt door <a href="https://carlojacobs.ga">Carlo Jacobs</a>
+        Gemaakt door <a href="https://carlojacobs.ga">Carlo Jacobs</a>.
+        <br>
+        Ben jij Patrick?: <router-link to="/login">Login</router-link>
       </p>
     </div>
   </footer>

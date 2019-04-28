@@ -3,6 +3,11 @@
   <div class="container">
     <h2 class="title is-2">Dit heb ik tot nu toe geschreven</h2>
     <hr>
+    <div class="tabs is-medium">
+		  <ul>
+		  	<div v-for="(category, index) in categories" :key="index"><li :class="{'is-active': (activeCategory == category.key)}" v-on:click="switchCategory(category.key)"><a>{{category.title}}</a></li></div>
+		  </ul>
+		</div>
     <div v-for="article in articles" :key="article._id" class="list-article">
       <div class="card" v-on:click="navigateToArticle(article._id)">
         <div class="card-content">
@@ -19,13 +24,41 @@
 </template>
 
 <script>
+import { apiUrl } from '../variables.js';
+import axios from 'axios';
+
 export default {
   name: 'Articles',
-  props: ['articles'],
+  data() {
+    return {
+      categories: [
+        {title: "Algemeen", key: "algemeen"},
+        {title: "Politiek", key: "politiek"},
+        {title: "Religie", key: "religie"},
+      ],
+      articles: [],
+      activeCategory: 'algemeen'
+    }
+  },
   methods: {
     navigateToArticle(id) {
       this.$router.push('/article/' + id);
+    },
+    switchCategory(newCategory) {
+				this.activeCategory = newCategory;
+				this.loadArticles();
+    },
+    loadArticles() {
+      var url = apiUrl + '/articles/tag/' + this.activeCategory;
+      axios.get(url).then(res => {
+        this.articles = res.data;
+      }).catch(err => {
+        console.log(err);
+      });
     }
+	},
+  created() {
+    this.loadArticles();
   }
 }
 </script>

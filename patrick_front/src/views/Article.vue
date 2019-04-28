@@ -6,9 +6,9 @@
       <p>Door {{article.author}} op {{article.date}}</p>
       <hr>
     </div>
-    <div class="container article-container content body" v-html="article.body"></div>
+    <div class="container article-container content body" v-html="compiledMarkdown"></div>
   </section>
-</template>
+</template>  
 
 <script>
 import { apiUrl } from '../variables.js';
@@ -19,12 +19,17 @@ export default {
   data() {
     return {
       article: {
-        title: String,
-        subtitle: String,
-        body: String,
-        author: String,
-        date: String
+        title: "",
+        subtitle: "",
+        body: "",
+        author: "",
+        date: ""
       }
+    }
+  },
+  computed: {
+    compiledMarkdown: function () {
+      return marked(this.article.body, { sanitize: true })
     }
   },
   methods: {

@@ -29,7 +29,7 @@ router.get('/article/:id', (req, res, next) => {
 
 // Create new article
 router.post('/create', (req, res, next) => {
-  const password = "patrick4321!";
+  const password = "Patrick4321!";
   const passwordCandidate = req.body.password;
   if (password !== passwordCandidate) {
     res.send("Unauthorized");
@@ -41,11 +41,67 @@ router.post('/create', (req, res, next) => {
     subtitle: article.subtitle,
     body: article.body,
     author: article.author,
-    date: article.date
+    date: article.date,
+    tags: article.tags
   });
   newArticle.save().then(() => {
-    res.send(newArticle);
+    res.send(true);
+    res.end();
   });
 });
+
+// Get articles by tag
+router.get('/tag/:tag', (req, res, next) => {
+  var tag = req.params.tag;
+  Article.find({tags: tag}, (err, articles) => {
+    if (err) {
+      res.json(err);
+      res.end();
+    }
+    if (articles) {
+      res.send(articles);
+      res.end();
+    }
+  });
+})
+
+router.post('/delete', (req, res, next) => {
+  var id = req.body.id;
+  var password = req.body.password;
+  if (password == "Patrick4321!") {
+    Article.findByIdAndRemove(id, (err, article) => {
+      if (err) {
+        res.send(err);
+        res.end();
+      } else {
+        res.send(true);
+        res.end();
+      }
+    });
+  } else {
+    res.send("Unauthorized");
+    res.end();
+  }
+});
+
+router.post('/update', (req, res, next) => {
+  var id = req.body.id;
+  var password = req.body.password;
+  var newArticle = req.body.article;
+  if (password == "Patrick4321!") {
+    Article.findByIdAndUpdate(id, newArticle, (err, article) => {
+      if (err) {
+        res.send(err);
+        res.end();
+      } else {
+        res.send(true);
+        res.end();
+      }
+    });
+  } else {
+    res.send("Unauthorized");
+    res.end();
+  }
+})
 
 module.exports = router;
