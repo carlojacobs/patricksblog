@@ -58,9 +58,9 @@ export default {
   data() {
     return {
       article: {
-        title: "Hallo daar!",
-        subtitle: "Dit is een blogpost",
-        body: "# Hallo daar!",
+        title: "",
+        subtitle: "",
+        body: "",
         tag: "algemeen",
         author: "Patrick Jacobs",
         date: ""
