@@ -12,6 +12,7 @@
 
 	// Import css
 	import '../node_modules/bulma/css/bulma.min.css';
+	import '../node_modules/buefy/dist/buefy.css';
 
 	export default {
 		name: 'app',

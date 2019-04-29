@@ -3,7 +3,7 @@
   <div class="container">
     <h2 class="title is-2">Dit heb ik tot nu toe geschreven</h2>
     <hr>
-    <div class="tabs is-medium">
+    <div class="tabs is-medium is-boxed">
 		  <ul>
 		  	<div v-for="(category, index) in categories" :key="index"><li :class="{'is-active': (activeCategory == category.key)}" v-on:click="switchCategory(category.key)"><a>{{category.title}}</a></li></div>
 		  </ul>

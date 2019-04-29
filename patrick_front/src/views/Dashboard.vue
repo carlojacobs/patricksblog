@@ -26,7 +26,7 @@
           <footer class="card-footer">
             <!-- <button href="#" class="card-footer-item">Bewerk</button> -->
             <a href="#" class="card-footer-item" v-on:click="editArticle(article._id)">Bewerk</a>
-            <a href="#" class="card-footer-item" v-on:click="deleteArticle(article._id)">Verwijder</a>
+            <a href="#" class="card-footer-item" v-on:click="deleteArticleConfirm(article._id)">Verwijder</a>
           </footer>
         </div>
       </div>
@@ -79,23 +79,34 @@ export default {
       });
     },
     deleteArticle(id) {
-      var passCandidate = window.prompt("Wachtoord: ");
-      if (passCandidate == globalPassword) {
-        var url = apiUrl + '/articles/delete';
-        axios.post(url, {
-          id: id,
-          password: globalPassword
-        }).then(res => {
-          if (res.data) {
-            window.alert("Verwijderd!");
-            this.getArticles();
+      var url = apiUrl + '/articles/delete';
+      axios.post(url, {
+        id: id,
+        password: globalPassword
+      }).then(res => {
+        if (res.data) {
+          this.getArticles();
+          this.$toast.open({
+            type: 'is-success',
+            message: 'Artikel verwijderd',
+            queue: false
+          });
+        }
+      }).catch(err => {
+        console.log(err);
+      });
+    },
+    deleteArticleConfirm(id) {
+      this.$snackbar.open({
+          message: 'Weet je zeker dat je dit artikel wil verwijderen?',
+          type: 'is-warning',
+          position: 'is-top',
+          actionText: 'Ja',
+          indefinite: true,
+          onAction: () => {
+            this.deleteArticle(id);
           }
-        }).catch(err => {
-          console.log(err);
-        });
-      } else {
-        window.alert("Verkeerd wachtwoord!");
-      }
+      })
     }
   },
   beforeRouteEnter(to, from, next) {
