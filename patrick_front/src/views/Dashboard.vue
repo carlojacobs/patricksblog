@@ -72,14 +72,14 @@ export default {
       this.$router.push('/edit/' + id);
     },
     getArticles() {
-      axios.get(apiUrl + '/articles/all').then(res => {
+      axios.get(apiUrl + '/all').then(res => {
         this.articles = res.data;
       }).catch(err => {
         console.log(err);
       });
     },
     deleteArticle(id) {
-      var url = apiUrl + '/articles/delete';
+      var url = apiUrl + '/delete';
       axios.post(url, {
         id: id,
         password: globalPassword
@@ -110,7 +110,7 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    axios.get(apiUrl + '/articles/all').then(res => {
+    axios.get(apiUrl + '/all').then(res => {
       next(vm => vm.setData(res.data));
     }).catch(err => {
       console.log(err);

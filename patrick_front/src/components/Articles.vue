@@ -49,7 +49,7 @@ export default {
 				this.loadArticles();
     },
     loadArticles() {
-      var url = apiUrl + '/articles/tag/' + this.activeCategory;
+      var url = apiUrl + '/tag/' + this.activeCategory;
       axios.get(url).then(res => {
         this.articles = res.data;
       }).catch(err => {

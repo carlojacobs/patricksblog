@@ -32,7 +32,7 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    axios.get(apiUrl + '/articles/all').then(res => {
+    axios.get(apiUrl + '/all').then(res => {
       next(vm => vm.setData(res.data));
     }).catch(err => {
       console.log(err);

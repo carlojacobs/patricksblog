@@ -89,7 +89,7 @@ export default {
       let formatted_date = current_datetime.getDate() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getFullYear();
       article.date = formatted_date;
       article.tags = [article.tag];
-      var url = apiUrl + '/articles/update';
+      var url = apiUrl + '/update';
       axios.post(url, {
         article: article,
         password: globalPassword,
@@ -105,7 +105,7 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     const id = to.params.id;
-    const url = apiUrl + '/articles/article/' + id
+    const url = apiUrl + '/article/' + id
     axios.get(url).then(res => {
       next(vm => vm.setData(res.data));
     }).catch(err => {
