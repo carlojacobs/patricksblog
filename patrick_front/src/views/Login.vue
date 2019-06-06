@@ -40,11 +40,7 @@ export default {
         if (result) {
           this.$store.commit('SET_AUTH', true);
           this.$router.push('/dashboard');
-          this.$toast.open({
-            type: 'is-success',
-            message: 'Je bent ingelogged',
-            queue: false
-          });
+          alert("Je bent ingelogd!");
         } else {
           this.wrongPasswordMessage();
         }
@@ -53,12 +49,7 @@ export default {
       })
     },
     wrongPasswordMessage() {
-      this.$snackbar.open({
-          message: 'Oeps! Verkeerd wachtwoord...',
-          type: 'is-danger',
-          position: 'is-top',
-          indefinite: true
-      });
+      alert("Verkeerd wachtwoord...");
     }
   }
 }

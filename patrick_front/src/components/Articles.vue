@@ -45,8 +45,8 @@ export default {
       this.$router.push('/article/' + id);
     },
     switchCategory(newCategory) {
-				this.activeCategory = newCategory;
-				this.loadArticles();
+			this.activeCategory = newCategory;
+			this.loadArticles();
     },
     loadArticles() {
       var url = apiUrl + '/tag/' + this.activeCategory;

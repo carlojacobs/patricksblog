@@ -86,27 +86,16 @@ export default {
       }).then(res => {
         if (res.data) {
           this.getArticles();
-          this.$toast.open({
-            type: 'is-success',
-            message: 'Artikel verwijderd',
-            queue: false
-          });
+          alert("Artikel is verwijderd!");
         }
       }).catch(err => {
         console.log(err);
       });
     },
     deleteArticleConfirm(id) {
-      this.$snackbar.open({
-          message: 'Weet je zeker dat je dit artikel wil verwijderen?',
-          type: 'is-warning',
-          position: 'is-top',
-          actionText: 'Ja',
-          indefinite: true,
-          onAction: () => {
-            this.deleteArticle(id);
-          }
-      })
+      if (confirm("Weet je zeker dat je dit artikel wil verwijderen?")) {
+        this.deleteArticle(id);
+      }
     }
   },
   beforeRouteEnter(to, from, next) {
